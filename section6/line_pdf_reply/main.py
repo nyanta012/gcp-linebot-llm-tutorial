@@ -25,7 +25,7 @@ line_bot_api = LineBotApi(os.environ["LINE_CHANNEL_ACCESS_TOKEN"])
 handler = WebhookHandler(os.environ["LINE_CHANNEL_SECRET"])
 db = firestore.Client()
 
-USE_HISTORY = True
+USE_HISTORY = False
 
 
 def download_files_from_storage(temp_dir: str) -> None:
