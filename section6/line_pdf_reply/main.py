@@ -81,46 +81,35 @@ def format_history(previous_messages: list) -> str:
 
 
 def generate_response(user_message: str, history: str) -> str:
+    COMMON_PROMPT = """
+    あなたは親切なアシスタントです。
+    {history_section}
+    以下に文献の情報を提供します。
+
+    ---------------------
+    {{context_str}}
+    ---------------------
+
+    与えられた情報を元にユーザーへのアドバイスを200文字以内で出力してください。
+    文献の情報から回答できない入力の場合は、そのように出力してください。
+
+    入力：{{query_str}}
+
+    出力：
+    """
+
     if USE_HISTORY:
-        PROMPT = """
-        あなたは親切なアシスタントです。
+        history_section = f"""
         これまでのユーザーとアシスタントの会話の履歴は以下のようになっています。
 
         ---------------------
         {history}
         ---------------------
-
-        また、以下に文献の情報を提供します。
-
-        ---------------------
-        {{context_str}}
-        ---------------------
-
-        与えられた情報を元にユーザーへのアドバイスを200文字以内で出力してください。
-        文献の情報から回答できない入力の場合は、そのように出力してください。
-
-        入力：{{query_str}}
-
-        出力：
-        """.format(
-            history=history
-        )
+        """
     else:
-        PROMPT = """
-        あなたは親切なアシスタントです。
-        以下に文献の情報を提供します。
+        history_section = ""
 
-        ---------------------
-        {{context_str}}
-        ---------------------
-
-        与えられた情報を元にユーザーへのアドバイスを200文字以内で出力してください。
-        文献の情報から回答できない入力の場合は、そのように出力してください。
-
-        入力：{{query_str}}
-
-        出力：
-        """.format()
+    PROMPT = COMMON_PROMPT.format(history_section=history_section)
 
     query_engine = index.as_query_engine(text_qa_template=QuestionAnswerPrompt(PROMPT))
     return str(query_engine.query(user_message))
