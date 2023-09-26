@@ -1,0 +1,4 @@
+llama-index==0.7.1
+pypdf==3.16.2
+google-api-python-client
+google-cloud-storage
