@@ -1,5 +1,6 @@
 line-bot-sdk
 llama-index==0.7.1
+openai==0.28.1
 google-api-python-client
 google-cloud-storage
 google-cloud-firestore
