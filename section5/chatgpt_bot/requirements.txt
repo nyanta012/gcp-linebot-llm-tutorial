@@ -1,2 +1,2 @@
 line-bot-sdk
-openai
+openai==0.28.1
