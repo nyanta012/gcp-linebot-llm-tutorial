@@ -9,7 +9,7 @@ from langchain.chat_models import ChatOpenAI
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
-from llama_index import (LLMPredictor, QuestionAnswerPrompt, ServiceContext,
+from llama_index import (LLMPredictor, ServiceContext, PromptTemplate,
                          StorageContext, load_index_from_storage)
 from llama_index.indices.base import BaseIndex
 
@@ -122,7 +122,7 @@ def generate_response(user_message: str, history: str) -> str:
 
     PROMPT = COMMON_PROMPT.format(history_section=history_section)
 
-    query_engine = index.as_query_engine(text_qa_template=QuestionAnswerPrompt(PROMPT))
+    query_engine = index.as_query_engine(text_qa_template=PromptTemplate(PROMPT))
     return str(query_engine.query(user_message))
 
 
