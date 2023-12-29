@@ -1,4 +1,6 @@
+langchain==0.0.340
 llama-index==0.7.1
+openai==0.28.1
 pypdf==3.16.2
 google-api-python-client
 google-cloud-storage
