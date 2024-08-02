@@ -26,7 +26,7 @@ def vectorize_pdf(pdf_filepath: str, vector_filepath: str) -> None:
     documents = loader.load_data(file=pdf_filepath)
     service_context = ServiceContext.from_defaults(
         llm_predictor=LLMPredictor(
-            llm=ChatOpenAI(model_name="gpt-3.5-turbo-0613", temperature=0)
+            llm=ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
         )
     )
     index = GPTVectorStoreIndex.from_documents(
