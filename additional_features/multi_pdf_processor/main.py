@@ -24,7 +24,7 @@ def vectorize_all_pdfs_in_directory(directory: str, vector_filepath: str) -> Non
     
     service_context = ServiceContext.from_defaults(
         llm_predictor=LLMPredictor(
-            llm=ChatOpenAI(model_name="gpt-3.5-turbo-0613", temperature=0)
+            llm=ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
         )
     )
     index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
