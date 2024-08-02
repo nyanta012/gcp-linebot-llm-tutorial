@@ -43,7 +43,7 @@ def setup_storage_and_load_index() -> BaseIndex:
         service_context = ServiceContext.from_defaults(
             llm_predictor=LLMPredictor(
                 llm=ChatOpenAI(
-                    temperature=0, model_name="gpt-3.5-turbo-0613", max_tokens=512
+                    temperature=0, model_name="gpt-3.5-turbo", max_tokens=512
                 )
             )
         )
